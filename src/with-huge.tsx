@@ -5,11 +5,7 @@ export default function WithHuge({ from }: { from: string; }) {
   const [hugeSize, setHugeSize] = useState(0);
 
   useEffect(() => {
-    window.addEventListener(
-      "load",
-      () => loadHuge(from).then(setHugeSize),
-      { once: true }
-    );
+    loadHuge(from).then(setHugeSize);
   }, []);
 
   return (
