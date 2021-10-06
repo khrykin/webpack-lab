@@ -6,7 +6,7 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval-cheap-source-map',
   devServer: {
-    static: './dist',
+    static: './docs',
   },
   output: {
     filename: '[name].js',
