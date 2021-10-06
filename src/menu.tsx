@@ -15,7 +15,7 @@ window.onload = () => console.log("onload");
 function Menu() {
   return (
     <div style={{ backgroundColor: "yellow" }}>
-      MENU
+      MENU Build Time - {process.env.BUILD_TIME}
       <Small />
       <WithHuge from="menu" />
     </div>

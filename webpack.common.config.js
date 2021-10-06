@@ -2,6 +2,7 @@ const path = require("path");
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 
 const outputDirPath = path.resolve(__dirname, "docs");
 
@@ -17,6 +18,9 @@ module.exports = {
       filename: path.join(outputDirPath, 'index.html'),
       scriptLoading: 'defer',
       minify: false,
+    }),
+    new DefinePlugin({
+      "process.env.BUILD_TIME": JSON.stringify(new Date())
     })
   ],
   resolve: {

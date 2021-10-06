@@ -1,5 +1,11 @@
+let hugePromise: Promise<number> | undefined;
+
 export default function loadHuge(from: string): Promise<number> {
-  return new Promise((resolve) => {
+  if (hugePromise) {
+    return hugePromise;
+  }
+
+  hugePromise = new Promise((resolve, reject) => {
     console.log(`loading heavy from ${from}...`);
     console.time(`loaded heavy from ${from} in`);
     import(
@@ -10,6 +16,9 @@ export default function loadHuge(from: string): Promise<number> {
         console.timeEnd(`loaded heavy from ${from} in`);
         console.log(`huge loaded from ${from} in:`, lib.length);
         resolve(lib.length);
-      });
+      })
+      .catch(reject);
   });
+
+  return hugePromise;
 }
