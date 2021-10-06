@@ -10,7 +10,6 @@ export default function loadHuge(from: string): Promise<number> {
     console.time(`loaded heavy from ${from} in`);
     window.addEventListener("load", () => {
       import(
-        /* webpackPrefetch: true */
         /* webpackChunkName: "huge" */
         "./huge")
         .then(({ default: lib }) => {
