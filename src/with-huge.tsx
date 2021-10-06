@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import loadHuge from "./loadHuge";
 
 export default function WithHuge({ from }: { from: string; }) {
