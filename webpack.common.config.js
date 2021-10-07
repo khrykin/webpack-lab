@@ -14,6 +14,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new WebpackManifestPlugin({
+      filter: ({ name, isInitial }) => !/\.(map|gz)$/.test(name) && isInitial,
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.template.html",
       filename: path.join(outputDirPath, 'index.html'),
@@ -51,7 +54,7 @@ module.exports = {
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: outputDirPath
+    path: outputDirPath,
   },
   optimization: {
     runtimeChunk: 'single',

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import loadHuge from "./loadHuge";
+import { debouncePromiseOnLoad } from "./lazy";
 
 export default function WithHuge({ from }: { from: string; }) {
   const [hugeSize, setHugeSize] = useState(0);
 
   useEffect(() => {
-    loadHuge(from).then(setHugeSize);
+    debouncePromiseOnLoad("huge",
+      () => import(
+        /* webpackChunkName: "huge" */
+        "./huge")
+    ).then(({ default: huge }) => setHugeSize(huge.length));
   }, []);
 
   return (
